@@ -2,6 +2,8 @@
 
 一套让 Codex、Claude Code 等 AI 在 Obsidian 中记录、检索和维护知识点的知识库模板。包含 Obsidian 目录结构、Bases 索引、AI 操作规则和 Agent Skill。
 
+![知识库界面](images/knowledge-base.png)
+
 ## 快速开始
 
 ### 1. 获取仓库
