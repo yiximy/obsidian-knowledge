@@ -1,0 +1,41 @@
+filters:
+  and:
+    - file.inFolder("Knowledge/Problems")
+    - type == "problem"
+formulas:
+  script_count: if(scripts, scripts.length, 0)
+properties:
+  formula.script_count:
+    displayName: 脚本
+views:
+  - type: table
+    name: 全部问题
+    groupBy:
+      property: status
+      direction: DESC
+    order:
+      - file.name
+      - domain
+      - status
+      - last_verified
+      - recurrence
+      - confidence
+      - projects
+      - tags
+      - formula.script_count
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: 按领域
+    groupBy:
+      property: domain
+      direction: ASC
+    order:
+      - file.name
+      - status
+      - last_verified
+      - recurrence
+      - confidence
+      - tags
+      - formula.script_count

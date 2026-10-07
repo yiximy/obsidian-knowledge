@@ -1,0 +1,18 @@
+filters:
+  and:
+    - file.inFolder("Knowledge/Resources")
+    - type == "resource"
+views:
+  - type: table
+    name: 资源库
+    groupBy:
+      property: domain
+      direction: ASC
+    order:
+      - file.name
+      - domain
+      - tags
+      - source
+      - updated
+    columnSize:
+      note.tags: 389

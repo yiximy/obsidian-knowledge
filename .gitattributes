@@ -1,0 +1,5 @@
+* text=auto
+*.md text eol=lf
+*.base text eol=lf
+*.ps1 text eol=crlf
+*.bat text eol=crlf
