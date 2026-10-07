@@ -1,6 +1,116 @@
-# Obsidian AI Knowledge Kit
+# obsidian-knowledge
 
-一套让 Codex、Claude Code 等 AI 在 Obsidian 中记录、检索和维护知识点的可复用模板。可以作为 Git 仓库分享，也可以把内置 Agent Skill 安装到支持 Agent Skills 的客户端。
+一套让 Codex、Claude Code 等 AI 在 Obsidian 中记录、检索和维护知识点的知识库模板。包含 Obsidian 目录结构、Bases 索引、AI 操作规则和 Agent Skill。
+
+## 快速开始
+
+### 1. 获取仓库
+
+```bash
+git clone https://github.com/yiximy/obsidian-knowledge.git
+cd obsidian-knowledge
+```
+
+### 2. 安装到 Obsidian Vault
+
+```powershell
+.\install.ps1 -VaultPath "D:\你的Vault"
+```
+
+脚本只复制缺失文件，不覆盖已有内容。安装完成后，Vault 中会生成：
+
+```text
+Knowledge/
+├─ Home.md
+├─ Problems/
+├─ Resources/
+└─ Scripts/
+AGENTS.md
+```
+
+### 3. 安装并配置 Obsidian MCP
+
+在 Obsidian 中安装并启用社区插件：
+
+```text
+Local REST API with MCP
+```
+
+然后：
+
+1. 打开 `Settings → Local REST API with MCP`。
+2. 启用 HTTP Server。
+3. 复制 API Key。
+4. 确认 MCP 地址为 `http://127.0.0.1:27123/mcp/`。
+
+### 4. 配置 AI 客户端
+
+Codex：
+
+```powershell
+[Environment]::SetEnvironmentVariable('OBSIDIAN_API_KEY','<API Key>','User')
+codex mcp add obsidian --url http://127.0.0.1:27123/mcp/ --bearer-token-env-var OBSIDIAN_API_KEY
+```
+
+Claude Code：
+
+```powershell
+claude mcp add --scope user --transport http obsidian `
+  http://127.0.0.1:27123/mcp/ `
+  --header "Authorization: Bearer <API Key>"
+```
+
+其他支持 Streamable HTTP 的客户端：
+
+```json
+{
+  "mcpServers": {
+    "obsidian": {
+      "url": "http://127.0.0.1:27123/mcp/",
+      "headers": { "Authorization": "Bearer <API Key>" }
+    }
+  }
+}
+```
+
+配置完成后重启 AI 客户端，确保 Obsidian 保持运行。
+
+### 5. 安装 Agent Skill
+
+```bash
+npx skills add yiximy/obsidian-knowledge
+```
+
+也可以手动复制：
+
+```text
+skills/obsidian-knowledge-workflow
+```
+
+到：
+
+```text
+Codex:       C:\Users\<用户名>\.agents\skills\
+Claude Code: C:\Users\<用户名>\.claude\skills\
+```
+
+### 6. 开始使用
+
+打开：
+
+```text
+Knowledge/Home.md
+```
+
+然后可以直接对 AI 说：
+
+```text
+把这个知识点保存到知识库。
+
+记录一下这个问题的根因和解决步骤。
+
+查询知识库中关于 MCP 的资料。
+```
 
 ## 包含
 
@@ -18,49 +128,6 @@ skills/
 └─ obsidian-knowledge-workflow/
    ├─ SKILL.md       Agent Skill
    └─ assets/        初始化 Vault 所需的模板
-```
-
-## 使用 Git 仓库
-
-```bash
-git clone <你的仓库地址>
-cd obsidian-knowledge-kit
-```
-
-把 `Knowledge/` 和 `AGENTS.md` 复制进你的 Obsidian Vault，或者运行：
-
-```powershell
-.\install.ps1 -VaultPath "D:\你的Vault"
-```
-
-## 安装 Agent Skill
-
-如果客户端支持 Agent Skills，可以安装内置 skill。
-
-Codex：
-
-```text
-复制 skills/obsidian-knowledge-workflow 到 C:\Users\<用户名>\.agents\skills\
-```
-
-Claude Code：
-
-```text
-复制 skills/obsidian-knowledge-workflow 到 C:\Users\<用户名>\.claude\skills\
-```
-
-发布到 GitHub 后，也可以使用：
-
-```bash
-npx skills add <owner>/<repo>
-```
-
-Skill 安装后，可以直接对 AI 说：
-
-```text
-把这个知识点保存到知识库。
-记录一下这个问题的根因和解决步骤。
-查询知识库中关于 MCP 的资料。
 ```
 
 ## 保存一个知识点
@@ -93,55 +160,6 @@ other
 ```
 
 新增领域前先检查已有领域，不要创建近义领域。
-
-## 发布到 GitHub
-
-```bash
-git branch -M main
-git remote add origin https://github.com/<owner>/<repo>.git
-git push -u origin main
-```
-
-发布后，其他人可以直接 clone：
-
-```bash
-git clone https://github.com/<owner>/<repo>.git
-```
-
-也可以安装 Agent Skill：
-
-```bash
-npx skills add <owner>/<repo>
-```
-## MCP 配置
-
-Codex：
-
-```powershell
-[Environment]::SetEnvironmentVariable('OBSIDIAN_API_KEY','<API Key>','User')
-codex mcp add obsidian --url http://127.0.0.1:27123/mcp/ --bearer-token-env-var OBSIDIAN_API_KEY
-```
-
-Claude Code：
-
-```powershell
-claude mcp add --scope user --transport http obsidian `
-  http://127.0.0.1:27123/mcp/ `
-  --header "Authorization: Bearer <API Key>"
-```
-
-其他支持 Streamable HTTP 的客户端：
-
-```json
-{
-  "mcpServers": {
-    "obsidian": {
-      "url": "http://127.0.0.1:27123/mcp/",
-      "headers": { "Authorization": "Bearer <API Key>" }
-    }
-  }
-}
-```
 
 ## License
 
