@@ -19,9 +19,11 @@ Get-ChildItem -LiteralPath (Join-Path $sourceRoot 'Knowledge') -Recurse -File | 
     }
 }
 
-$agentsDestination = Join-Path $VaultPath 'AGENTS.md'
-if (-not (Test-Path -LiteralPath $agentsDestination)) {
-    Copy-Item -LiteralPath (Join-Path $sourceRoot 'AGENTS.md') -Destination $agentsDestination
+foreach ($ruleFile in @('AGENTS.md', 'CLAUDE.md')) {
+    $destination = Join-Path $VaultPath $ruleFile
+    if (-not (Test-Path -LiteralPath $destination)) {
+        Copy-Item -LiteralPath (Join-Path $sourceRoot $ruleFile) -Destination $destination
+    }
 }
 
 Write-Host "Installed knowledge base template into: $VaultPath"

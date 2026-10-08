@@ -20,12 +20,13 @@ Knowledge/
 If `Knowledge/` does not exist, copy the bundled assets into the vault:
 
 1. Copy `assets/AGENTS.md` to the vault root as `AGENTS.md` if missing.
-2. Create `Knowledge/Problems`, `Knowledge/Resources`, and `Knowledge/Scripts`.
-3. Copy `assets/Home.md` to `Knowledge/Home.md`.
-4. Copy `assets/_template.md` to `Knowledge/Problems/_template.md`.
-5. Copy `assets/problems.base` to `Knowledge/Problems/_index.base`.
-6. Copy `assets/resources.base` to `Knowledge/Resources/_index.base`.
-7. Copy `assets/scripts-README.md` to `Knowledge/Scripts/README.md`.
+2. Copy `assets/CLAUDE.md` to the vault root as `CLAUDE.md` if missing.
+3. Create `Knowledge/Problems`, `Knowledge/Resources`, and `Knowledge/Scripts`.
+4. Copy `assets/Home.md` to `Knowledge/Home.md`.
+5. Copy `assets/_template.md` to `Knowledge/Problems/_template.md`.
+6. Copy `assets/problems.base` to `Knowledge/Problems/_index.base`.
+7. Copy `assets/resources.base` to `Knowledge/Resources/_index.base`.
+8. Copy `assets/scripts-README.md` to `Knowledge/Scripts/README.md`.
 
 Do not overwrite existing files.
 

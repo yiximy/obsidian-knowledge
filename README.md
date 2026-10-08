@@ -1,6 +1,6 @@
 # obsidian-knowledge
 
-一套让 Codex、Claude Code 等 AI 在 Obsidian 中记录、检索和维护知识点的知识库模板。包含 Obsidian 目录结构、Bases 索引、AI 操作规则和 Agent Skill。
+支持 Codex、Claude Code、Cursor、Gemini CLI、OpenCode、GitHub Copilot 等支持 Agent Skills 的客户端。让 AI 在 Obsidian 中记录、检索和维护知识点，包含目录结构、Bases 索引、操作规则和 Agent Skill。
 
 ![知识库界面](images/knowledge-base.png)
 
@@ -28,6 +28,7 @@ Knowledge/
 ├─ Resources/
 └─ Scripts/
 AGENTS.md
+CLAUDE.md
 ```
 
 ### 3. 安装并配置 Obsidian MCP
@@ -124,13 +125,27 @@ Knowledge/
 ├─ Scripts/        与问题关联的脚本
 ├─ raw/            可选：LLM Wiki 原始资料
 └─ wiki/           可选：LLM Wiki 编译后的知识页
-AGENTS.md          AI 操作规则
+AGENTS.md          Codex 操作规则
+CLAUDE.md          Claude Code 操作规则
 install.ps1        把模板复制进现有 Vault
 skills/
 └─ obsidian-knowledge-workflow/
    ├─ SKILL.md       Agent Skill
    └─ assets/        初始化 Vault 所需的模板
 ```
+
+## 客户端支持
+
+| 客户端 | 项目规则 | Agent Skill |
+|---|---|---|
+| Codex | `AGENTS.md` | `skills/obsidian-knowledge-workflow` |
+| Claude Code | `CLAUDE.md` | `skills/obsidian-knowledge-workflow` |
+| Cursor | Agent Skills | `skills/obsidian-knowledge-workflow` |
+| Gemini CLI | Agent Skills | `skills/obsidian-knowledge-workflow` |
+| OpenCode | Agent Skills | `skills/obsidian-knowledge-workflow` |
+| GitHub Copilot | Agent Skills | `skills/obsidian-knowledge-workflow` |
+
+Codex 会自动读取 Vault/项目根目录的 `AGENTS.md`。Claude Code 会自动读取 `CLAUDE.md`。其他客户端通过 `SKILL.md` 使用同一套流程。
 
 ## 保存一个知识点
 
